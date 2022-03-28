@@ -10,10 +10,10 @@ const SignUp = () => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const isAuth = useSelector((state) => state.authReducer.isAuth);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const SignUp = () => {
       firstname,
       email,
       password,
-      lastname
+      lastname,
     };
 
     dispatch(signUp(newUser));
@@ -41,33 +41,57 @@ const SignUp = () => {
   };
   return (
     <div>
-      
       <form class="login">
+        <fieldset>
+          <legend class="legend">Sign Up</legend>
 
-<fieldset>
+          <div>
+            <input
+              class="input"
+              onChange={(e) => setFirtname(e.target.value)}
+              value={firstname}
+              type="text"
+              placeholder="firtname"
+              required
+            />
+          </div>
 
-  <legend class="legend">Sign Up</legend>
+          <div>
+            <input
+              class="input"
+              onChange={(e) => setLastname(e.target.value)}
+              value={lastname}
+              type="text"
+              placeholder="lastname"
+              required
+            />
+          </div>
+          <div>
+            <input
+              className="input"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+              placeholder="email"
+              required
+            />
+          </div>
+          <div>
+            <input
+              class="input"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              placeholder="Password"
+              required
+            />
+          </div>
 
-  <div class="input">
-    <input onChange={(e)=>setFirtname(e.target.value) } value={firstname} type="text" placeholder="firtname" required />
-  </div>
-
-  <div class="input">
-    <input  onChange={(e)=>setLastname(e.target.value)} value={lastname} type="text" placeholder="lastname" required />
-  </div>
-  <div class="input">
-    <input  onChange={(e)=>setEmail(e.target.value)} value={email} type="email" placeholder="email" required />
-  </div>
-  <div class="input">
-    <input  onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Password" required />
-  </div>
-
-  <button onClick={(e)=>register(e)} type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
-
-</fieldset>
-
-
-</form>
+          <button onClick={(e) => register(e)} type="submit" class="submit">
+            <i class="fa fa-long-arrow-right"></i>
+          </button>
+        </fieldset>
+      </form>
     </div>
   );
 };
