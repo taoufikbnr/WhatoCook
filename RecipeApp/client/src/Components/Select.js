@@ -5,13 +5,13 @@ const Select = ({ingredient , setingredient}) => {
 
   const options = [
     { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry", disabled: true },
-  ];
-
+    { label: "Mango 🍍", value: "mango" },
+    { label: "Strawberry 🍓", value: "strawberry"},
+     //disabled: true 
+  ]
   return (
     <div>
-      <h1>Select Fruits</h1>
+      <h6>Select Fruits</h6>
       <MultiSelect
         options={options}
         value={ingredient}

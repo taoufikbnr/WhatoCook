@@ -2,9 +2,11 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 
-exports.addProduct = async (req, res) => {
-  const newProduct = new Product({userId: req.user._id,...req.body,});
 
+exports.addProduct = async (req, res) => {
+ 
+      const newProduct = new Product({userId: req.user._id,...req.body,photo:req.file});
+      
   try {
     const product = await newProduct.save();
 
@@ -15,6 +17,7 @@ exports.addProduct = async (req, res) => {
     await user.save();
 
     res.status(203).json({ msg: "Product added successfully", product, user });
+    console.log(`product ${product}`)
   } catch (error) {
     res.status(403).json({ errors: [{ msg: "Failed to add the product" }] });
   }

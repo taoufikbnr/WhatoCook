@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUser } from "../../JS/actions/authActions";
+import { getAllProducts } from "../../JS/actions/productActions";
 import { Loading } from "../loading/loading";
 import ProductCard from "../Products/ProductCard";
 
@@ -12,7 +13,8 @@ const Profile = () => {
   const products = useSelector((state) => state.authReducer.products);
 
   useEffect(() => {
-    dispatch(getAuthUser());
+    dispatch(getAuthUser())
+
   }, [dispatch]);
 
   return loading ? (
@@ -32,7 +34,7 @@ const Profile = () => {
 
       <section className="user-products">
         {products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} key={product._id} />
         ))}
       </section>
     </div>
