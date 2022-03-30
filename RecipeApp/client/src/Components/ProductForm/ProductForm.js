@@ -19,24 +19,35 @@ export const ProductForm = ({ edit, product, idProduct }) => {
     if (edit) {
       setname(product.name);
       setingredient([...product.ingredient]);
+      setphoto(product.photo);
+
     } else {
       setname("");
       setingredient([]);
+      setphoto([]);
+
     }
   }, [edit, product]);
 
   const add = (e) => {
     e.preventDefault();
-    let newProduct = {
-      name,
-      ingredient,
-      photo,
-    };
-    dispatch(addProduct(newProduct));
+    const formData = new FormData();
+
+    formData.append('name',name);
+
+    for (let i = 0; i < ingredient.length; i++) {
+      formData.append("ingredient", ingredient[i].label);
+    }
+    formData.append('photo',photo);
+
+
+
+    dispatch(addProduct(formData));
     handleClose();
   };
   const update = (e) => {
     e.preventDefault();
+
     let updatedProduct = {
       name,
       ingredient,
@@ -61,6 +72,11 @@ export const ProductForm = ({ edit, product, idProduct }) => {
           <Modal.Header closeButton>
             <Modal.Title>{edit ? "Edit" : "Add"} </Modal.Title>
           </Modal.Header>
+         
+
+
+          <form encType="multipart/form-data"> 
+            <Select ingredient={ingredient} setingredient={setingredient} />
           <div>
             <input
               className="input"
@@ -68,21 +84,18 @@ export const ProductForm = ({ edit, product, idProduct }) => {
               value={name}
               type="text"
               placeholder="Recipe name"
-              required
+              
             />
           </div>
-
-          <Select ingredient={ingredient} setingredient={setingredient} />
-
-          <div>
             <input
               className="input"
               type="file"
               accept=".png, .jpg, .jpeg"
+              // name="photo"
               name="photo"
               onChange={(e) => setphoto(e.target.files[0])}
             />
-          </div>
+          </form>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close

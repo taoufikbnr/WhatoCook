@@ -29,6 +29,7 @@ export const addProduct =(newProduct) =>async (dispatch)=>{
         dispatch({type:ADD_PRODUCT_SUCCESS,payload:response.data})
         dispatch(getAllProducts());
         dispatch(getAuthUser());
+        
         } catch (error) {
         dispatch({type:ADD_PRODUCT_FAILED,payload:error.response.data})   
         }
@@ -36,7 +37,7 @@ export const addProduct =(newProduct) =>async (dispatch)=>{
 }
 
 export const updateProduct =(idProduct,updateProduct) => async (dispatch) =>{
-// idProduct
+
     dispatch({type:UPDATE_PRODUCT})
 
     try {
@@ -72,6 +73,7 @@ export  const deleteProduct=(idProduct) => async (dispatch) =>{
         dispatch({type:DELETE_PRODUCT_SUCCESS,payload:response.data})
 
         dispatch(getAllProducts());
+        dispatch(getAuthUser());
 
     } catch (error) {
         dispatch({type:DELETE_PRODUCT_FAILED,payload:error.response.data})

@@ -7,6 +7,7 @@ import { ProductForm } from "../ProductForm/ProductForm";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
+  console.log(product.ingredient)
   return (
     <>
       <Card
@@ -17,15 +18,23 @@ const ProductCard = ({ product }) => {
           marginTop: "10px",
         }}
       >
-        <Card.Img
-          style={{ height: 150, width: 150 }}
-          variant="top"
-          src={product.photo}
-        />
+      
+           {product.photo.map(el =>
+             <Card.Img
+             style={{ height: 150, width: 150 }}
+             variant="top"
+             src={`./images/${el.filename}`}
+             />
+          // <img src={`./images/${el.filename}`}>
+
+        )}
         <Card.Body style={{ height: 150 }}>
+       
+        {/* src={`./images/${product.photo[0].filename}`} */}
           <Card.Title>{product.name} </Card.Title>
+          
           {product.ingredient.map((el, i) => (
-            <Card.Text>{el.value}</Card.Text>
+            <Card.Text>{el}</Card.Text>
           ))}
 
           {product.userId === user._id ? (

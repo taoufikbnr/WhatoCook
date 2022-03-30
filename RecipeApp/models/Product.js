@@ -10,11 +10,8 @@ const productSchema = mongoose.Schema({
     name : String,
     ingredient: {
         type: Array,
-        // ing: ["egg","batata"],
       }, 
-       photo: {
-        type: String
-    },
+      photo:[],
     comments:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Comment"
