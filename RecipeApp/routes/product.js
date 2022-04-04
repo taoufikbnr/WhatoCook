@@ -2,7 +2,8 @@ const express = require("express");
 const {addProduct,deleteProduct,getProductById,getAllProducts,updateProduct,} = require("../controllers/product.controller");
 const isAuth = require("../middlewares/passport-setup");
 const multer = require("multer")
-const path = require("path")
+const path = require("path");
+const { productRules,validator } = require("../middlewares/validator");
 
 
 

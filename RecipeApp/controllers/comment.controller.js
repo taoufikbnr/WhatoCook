@@ -4,13 +4,13 @@ const User = require("../models/User")
 
 
 exports.addComment = async (req,res)=>{
-    const newComment = await new Comments({userId: req.user._id,...req.body})   
+    const newComment = await new Comments({userId:req.user._id,productId:req.params.productId,...req.body})   
     try {
         const comment = await newComment.save()
 
         const product = await Product.findById(req.params.productId);
 
-        product.comments = [...product.comments,newComment.id]
+        product.comments = [...product.comments,newComment._id]
         
         await product.save()
         

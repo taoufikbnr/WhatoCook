@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../JS/actions/productActions";
-import { ProductForm } from "../ProductForm/ProductForm";
+import { FormControl } from "react-bootstrap";
+import IngredientsCard from "../Ingredients/IngredientsCard";
+
 import ProductList from "../Products/ProductList";
-import Select from "../Select";
+import SearchForm from "../searchForm/SearchForm";
 
 const Home = () => {
+
+
   return (
-    <>
-      <ProductList />
-    </>
+    <div style={{marginTop:150}} >
+ 
+       <ProductList   />
+    
+
+       {/* <SearchForm  search={search} setsearch={setsearch} /> */}
+      {/* <SearchForm   /> */}
+         
+       </div>
   );
 };
 

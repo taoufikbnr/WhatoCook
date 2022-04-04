@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     products: [],
     errors: [],
+    er:false
   };
 
 
@@ -14,16 +15,16 @@ const productReducer = (state=initialState,{type,payload}) => {
         case ADD_PRODUCT:    
         case UPDATE_PRODUCT:
         case DELETE_PRODUCT:
-            return {...state,loading:true}
+            return {...state,loading:true,er:false}
 
         case GET_PRODUCT_SUCCESS:
             return {...state,loading:false,products:payload.allProducts,
-            msg:payload.msg} 
+            msg:payload.msg,er:false} 
 
         case ADD_PRODUCT_SUCCESS:
         case UPDATE_PRODUCT_SUCCESS :   
         case DELETE_PRODUCT_SUCCESS:
-            return {...state,loading:false,msg:payload.msg}
+            return {...state,loading:false,msg:payload.msg,er:false}
      
         case GET_PRODUCT_FAILED:
         case ADD_PRODUCT_FAILED:  
@@ -33,6 +34,7 @@ const productReducer = (state=initialState,{type,payload}) => {
                 ...state,
                 loading: false,
                 errors: payload,
+                er:true,
               };
              
             

@@ -14,7 +14,7 @@ const UserNav = () => {
 
  
   return (
-    <Navbar style={{background:"rgb(92, 184, 92,0.2)"}} expand="lg" fixed="top">
+    <Navbar style={{background:"rgb(92, 184, 92,0.2)",marginBottom:50}} expand="lg" fixed="top" >
   <Container fluid style={{margin:"0 10%"}}>
     <Navbar.Brand href="/">FEEDERS </Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -36,7 +36,7 @@ const UserNav = () => {
           </NavDropdown.Item>
         </NavDropdown>
        {/* <Link to="/users"><Button variant="outline-success" >Admin Dashbord</Button> </Link> */}
-       {role ==="admin" ?<Link to="/users"><Button variant="outline-success" >Admin Dashbord</Button> </Link>:null}
+       {role ==="admin" ?<Link to="/dashboards"><Button variant="outline-success" >Admin Dashbord</Button> </Link>:null}
        {/* {isAdmin ?<Link to="/users"><Button variant="outline-success" >Admin Dashbord</Button> </Link>:null} */}
       </Nav>
       <Form className="d-flex justify-content-between ">
