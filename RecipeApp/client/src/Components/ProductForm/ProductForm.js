@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import { addProduct, updateProduct } from "../../JS/actions/productActions";
 import Select from "../Select";
 
 export const ProductForm = ({ edit, product, idProduct }) => {
+
+  const isAuth = useSelector(state=>state.authReducer.isAuth)
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
@@ -41,9 +43,8 @@ export const ProductForm = ({ edit, product, idProduct }) => {
     formData.append('photo',photo);
 
 
-
     dispatch(addProduct(formData));
-    handleClose();
+    handleClose() 
   };
   const update = (e) => {
     e.preventDefault();
@@ -54,9 +55,9 @@ export const ProductForm = ({ edit, product, idProduct }) => {
     };
 
     dispatch(updateProduct(idProduct, updatedProduct));
-    handleClose();
+    handleClose()
   };
-  return (
+  return isAuth ? (
     <div>
       {edit ? (
         <Button>
@@ -76,7 +77,6 @@ export const ProductForm = ({ edit, product, idProduct }) => {
 
 
           <form encType="multipart/form-data"> 
-            <Select ingredient={ingredient} setingredient={setingredient} />
           <div>
             <input
               className="input"
@@ -86,12 +86,12 @@ export const ProductForm = ({ edit, product, idProduct }) => {
               placeholder="Recipe name"
               
             />
+            <Select ingredient={ingredient} setingredient={setingredient} isFilter={false} />
           </div>
             <input
               className="input"
               type="file"
               accept=".png, .jpg, .jpeg"
-              // name="photo"
               name="photo"
               onChange={(e) => setphoto(e.target.files[0])}
             />
@@ -104,11 +104,11 @@ export const ProductForm = ({ edit, product, idProduct }) => {
               variant="primary"
               onClick={(e) => (edit ? update(e) : add(e))}
             >
-              {edit ? "Edit" : "Add"}
+             {edit ? "Edit" : "Add"}
             </Button>
           </Modal.Footer>
         </Modal>
       </div>
     </div>
-  );
+  ):null;
 };

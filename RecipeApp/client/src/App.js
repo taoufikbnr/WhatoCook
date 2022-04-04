@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
+import AdminDashboard from "./Components/adminDashboard/AdminDashboard";
 import GuestNav from "./Components/Header/GuestNav";
 import UserNav from "./Components/Header/UserNav";
 import Home from "./Components/Home/Home";
@@ -16,6 +17,8 @@ import { getAuthUser } from "./JS/actions/authActions";
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const role = useSelector((state) => state.authReducer.user.role);
+
 
   useEffect(() => {
     dispatch(getAuthUser());
@@ -31,7 +34,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <Home />
+              <Home  />
             </PrivateRoute>
           }
         />
@@ -43,15 +46,21 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/users"
           element={
             <PrivateRoute>
               <UsersList />
             </PrivateRoute>
           }
-        />
-        <Route path="/products" element={<ProductList />}></Route>
+        /> */}
+        <Route path="/products" element={<ProductList  />}></Route>
+         {role === "admin"?<Route path="/dashboards" 
+         element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} />:<Route path="/" element={<Home/>}/>}
+        <Route path="dashboard">
+          <Route path="users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
+          <Route path="products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
+        </Route>
       </Routes>
     </div>
   );

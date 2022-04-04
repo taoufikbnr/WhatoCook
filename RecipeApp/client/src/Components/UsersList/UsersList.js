@@ -13,7 +13,7 @@ const UsersList = () => {
   const errors = useSelector((state) => state.userReducer.errors);
   // const isAdmin = useSelector((state) => state.userReducer.isAdmin);
   const er = useSelector((state) => state.userReducer.er);
-
+  console.log(users.length)
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
@@ -40,7 +40,7 @@ const UsersList = () => {
           </Modal>
         ) : null}
 
-        {users.map((user) => (
+        {users.map((user,i) => (
           <div>
             {" "}
             <Button
@@ -49,7 +49,7 @@ const UsersList = () => {
             >
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </Button>
-            TEST {user.firstname} {user.role}
+            TEST {user.firstname} {user.role} {user.email}
           </div>
         ))}
       </div>

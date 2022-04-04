@@ -17,7 +17,6 @@ exports.addProduct = async (req, res) => {
     await user.save();
 
     res.status(203).json({ msg: "Product added successfully", product, user });
-    console.log(`product ${product}`)
   } catch (error) {
     res.status(403).json({ errors: [{ msg: "Failed to add the product" }] });
   }
@@ -26,13 +25,16 @@ exports.addProduct = async (req, res) => {
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findOne({ _id: req.params.idProduct });
-
+    if(req.user.role === "admin") {
+       await Product.findByIdAndDelete({_id: req.params.idProduct,});
+       res.status(203).json({ msg: "Product deleted by admin" });
+  }  else {
     if (req.user._id.equals(product.userId)) {
 
       await Product.findByIdAndDelete({_id: req.params.idProduct,});
 
       res.status(203).json({ msg: "Product deleted successfully" });
-    }
+    }}
   } catch (error) {
     res.status(402).json({ errors: [{ msg: "Delete product failed" }] });
   }
@@ -82,7 +84,7 @@ exports.updateProduct = async (req, res) => {
 
 ///////////ADMIN
 
-exports.deleteProductByADmin = async (req, res) => {
+exports.deleteProductByAdmin = async (req, res) => {
   try {
       await Product.findByIdAndDelete({_id: req.params.idProduct,});
 
