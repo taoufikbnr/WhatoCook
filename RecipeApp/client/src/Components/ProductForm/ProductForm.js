@@ -38,7 +38,7 @@ export const ProductForm = ({ edit, product, idProduct }) => {
     formData.append('name',name);
 
     for (let i = 0; i < ingredient.length; i++) {
-      formData.append("ingredient", ingredient[i].label);
+      formData.append("ingredient", ingredient[i].value);
     }
     formData.append('photo',photo);
 
