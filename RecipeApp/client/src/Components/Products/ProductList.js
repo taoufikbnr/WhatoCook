@@ -59,17 +59,11 @@ const ProductList = () => {
             flexWrap: "wrap",
             justifyContent: "space-between",
           }}
-        >
-          {/* {products.map((product) => <ProductCard product={product} key={product._id}  />)} */}
-          {products
-            // .filter((el, i) =>
-            //   el.ingredient.find((el) =>
-            //     el.toLowerCase().includes(search.toLowerCase())
-            //   )
-            // )
+        >          {products
+          
             .filter((el, i) =>
             el.ingredient.join().toLowerCase().includes(search
-              .map((el) => el.value)
+              .map((el) => el.value).join()
              ))
           
               
