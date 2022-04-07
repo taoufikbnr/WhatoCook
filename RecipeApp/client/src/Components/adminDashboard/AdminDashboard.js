@@ -22,11 +22,11 @@ const AdminDashboard = () => {
     <div style={{display:"flex",justifyContent:"space-between",margin:"80px 12%"}}>
     <Link to="/dashboard/users">
   <Card style={{ width: '20rem' }} >
-    <Card.Img variant="top"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU"
+    <Card.Img style={{height:350}} variant="top"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU"
           alt="profile avatar"/>
          
     <Card.Body>
-      <Card.Title>Uses List </Card.Title>
+      <Card.Title>Users List </Card.Title>
     </Card.Body>
     <Card.Footer>
       <small className="text-muted">Number of users {users.length}</small>
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
   </Link>
   <Link to="/dashboard/products">
   <Card style={{ width: '20rem' }} >
-    <Card.Img variant="top"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU"
+    <Card.Img style={{height:350}} variant="top"  src="https://images-na.ssl-images-amazon.com/images/I/71IfGdoNC1L.jpg"
           alt="profile avatar"/>
          
     <Card.Body>
@@ -46,21 +46,21 @@ const AdminDashboard = () => {
     </Card.Footer>
   </Card>
   </Link>
-  {/* <Card style={{ width: '18rem' }} >
-    <Card.Img variant="top" src="holder.js/100px160" />
+  
+   <Link to="/dashboard/comments">
+  <Card style={{ width: '20rem' }} >
+    <Card.Img style={{height:350}} variant="top"  src="https://previews.123rf.com/images/velichkonelli/velichkonelli1810/velichkonelli181000039/110774448-set-template-of-comments-leave-a-comment-on-the-video-reply-to-comment-template-for-feedback-on-the-.jpg"
+          alt="profile avatar"/>
+         
     <Card.Body>
-      <Card.Title>Card title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
+      <Card.Title>Comments List </Card.Title>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
+      <small className="text-muted">Number of recipes Not available yet</small>
     </Card.Footer>
-  </Card> */}
-      
+  </Card>
+  </Link>
+   
 
 
 </div>

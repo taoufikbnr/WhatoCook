@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, ButtonGroup, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteProduct } from "../../JS/actions/productActions";
 import { ProductForm } from "../ProductForm/ProductForm";
-
+import './products.css'
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
@@ -12,41 +13,47 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <Card
-        style={{
-          width: "20rem",
-          display: "flex",
-          flexDirection: "row",
-          margin:10,
-        }}
+       className="product-card"
       >
-      
+      <div className="card-container">
            {product.photo.map(el =>
              <Card.Img
-             style={{ height: 150, width: 150 }}
+             style={{ height: 150, width: 150,display:'flex' }}
              variant="top"
              src={`./images/${el.filename}`}
              />
+             
+             )}
+             <div className="card-body">
+             <h4>{product.name} </h4>
+            <div style={{display:"flex"}}>
 
-        )}
-        <Card.Body style={{ height: 150 }}>
        
-          <Card.Title>{product.name} </Card.Title>
+             {product.ingredient.map((el, i) => (
+            <p>{el},</p>
           
-          {product.ingredient.map((el, i) => (
-            <Card.Text>{el}</Card.Text>
-          ))}
+        
+          ))} 
+          
 
-          {product.userId === user._id ? (
-            <div>
+                    </div> 
+                    <Link to={`/product/${product._id}`}> Recipe... </Link>
+
+                    
+    </div>
+  
+    <ButtonGroup style={{position:"absolute",right:0,bottom:0}} aria-label="Basic example">
+        {product.userId === user._id ? (
+          
               <ProductForm
                 idProduct={product._id}
                 edit={true}
                 product={product}
               />
-            </div>
-          ) : null}
-        </Card.Body>
-        {role ==="admin"? <Button
+         
+          ) : null}   
+         
+  {role ==="admin"? <Button
             onClick={() => dispatch(deleteProduct(product._id))}
             variant="outline-success"
           >
@@ -59,6 +66,9 @@ const ProductCard = ({ product }) => {
             <i class="fa fa-trash" aria-hidden="true"></i>
           </Button>
         ) : null}
+</ButtonGroup>
+  </div>
+
       </Card>
     </>
   );

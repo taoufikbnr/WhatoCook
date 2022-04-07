@@ -34,7 +34,7 @@ export const signIn = (userCred) => async (dispatch) =>{
     
     dispatch({type:SIGN_IN_SUCCESS,payload:response.token})
   } catch (error) {
-    dispatch({type:SIGN_IN_FAILED,payload:error.data})
+    dispatch({type:SIGN_IN_FAILED,payload:error.response.data})
     
   }
 }

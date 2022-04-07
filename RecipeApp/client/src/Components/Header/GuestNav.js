@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const GuestNav = () => {
   return (
-    <Navbar style={{background:"rgb(92, 184, 92,0.2)"}} expand="lg" fixed="top">
+    <Navbar  className='navbar' expand="lg" fixed="top">
   <Container fluid style={{margin:"0 10%"}}>
     <Navbar.Brand href="/">  FEEDERS </Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -20,14 +20,6 @@ const GuestNav = () => {
        
         <Nav.Link href='/products' >Recipes</Nav.Link>
    
-        <NavDropdown title="Link" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5">
-            Something else here
-          </NavDropdown.Item>
-        </NavDropdown>
       
       </Nav>
       <Form className="d-flex justify-content-between ">

@@ -1,0 +1,16 @@
+
+.user-profile{
+    margin-top: 80px;
+}
+.user-details{
+    text-align: center;
+}
+.user-details img{
+    width: 150px;
+}
+
+.user-products{
+    margin:  0 12%;
+    display: flex;
+    justify-content: space-between;
+}

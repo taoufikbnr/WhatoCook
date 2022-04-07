@@ -49,7 +49,6 @@ import {
         loading:false,
         user:payload,
         products: payload.products,
-
         isAuth:true
       }
         case SIGN_UP_FAILED:
@@ -60,6 +59,7 @@ import {
               loading: false,
               errors: payload,
               isAuth: false,
+              
             };
 
      case LOG_OUT:

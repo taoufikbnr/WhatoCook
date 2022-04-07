@@ -1,13 +1,13 @@
 import React from "react";
 import { MultiSelect } from "react-multi-select-component";
 
-const Select = ({ingredient , setingredient,search , setsearch, isFilter}) => {
+const Select = ({ingredient , setingredient,search, setsearch, isFilter}) => {
 
   const options = [
     { label: "Grapes 🍇", value: "grapes" },
     { label: "Mango 🍍", value: "mango" },
     { label: "Strawberry 🍓", value: "strawberry"},
-    { label: "poop 💩", value: "poop"},
+    { label: "Banana 🍌", value: "banana"},
 
     
      //disabled: true 

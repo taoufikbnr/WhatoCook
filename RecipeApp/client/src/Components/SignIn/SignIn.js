@@ -10,6 +10,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const error = useSelector((state) => state.authReducer.errors);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const SignIn = () => {
   };
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex"}}>
         <form className="login">
           <fieldset>
             <legend className="legend">Login</legend>
@@ -53,10 +54,11 @@ const SignIn = () => {
               />
             </div>
 
+        {error &&<div className="error">{error.msg} </div>}
             <button onClick={(e) => login(e)} type="submit" className="submit">
               <i className="fa fa-long-arrow-right"></i>
             </button>
-          </fieldset>
+                 </fieldset>
         </form>
       </div>
     </>

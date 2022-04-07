@@ -3,19 +3,19 @@ import { FormControl } from "react-bootstrap";
 import IngredientsCard from "../Ingredients/IngredientsCard";
 
 import ProductList from "../Products/ProductList";
-import SearchForm from "../searchForm/SearchForm";
+import Select from "../Select";
 
 const Home = () => {
+  // const [search, setsearch] = useState([]);
 
 
   return (
-    <div style={{marginTop:150}} >
- 
-       <ProductList   />
-    
+    <div >
+       {/* <Select search={search} setsearch={setsearch} isFilter={true} /> */}
 
-       {/* <SearchForm  search={search} setsearch={setsearch} /> */}
-      {/* <SearchForm   /> */}
+       {/* <ProductList  search={search}  setsearch={setsearch} isFilter={true} /> */}
+       <ProductList  />
+    
          
        </div>
   );
