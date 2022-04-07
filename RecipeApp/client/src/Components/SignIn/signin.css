@@ -6,7 +6,7 @@
   margin: -150px auto 0 auto;
   background: #fff;
   border-radius: 4px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .legend {
@@ -19,14 +19,7 @@
   font-size: 20px;
 }
 
-/* span {
-  position: absolute;
-  display: block;
-  color: darken(#ededed, 10%);
-  left: 10px;
-  top: 8px;
-  font-size: 20px;
-} */
+
 
 .input {
   width: 100%;
@@ -36,6 +29,7 @@
   border-radius: 4px;
   transition: 0.2s ease-out;
   color: darken(#ededed, 30%);
+  margin-top: 5px;
 }
 
 .submit {
@@ -51,4 +45,19 @@
   cursor: pointer;
   box-shadow: 0px 0px 0px 7px #fff;
   transition: 0.2s ease-out;
+}
+
+.error{
+  margin: 0 auto;
+  color: hsla(0, 100%, 50%, 0.495);
+
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}
+.block{
+  display: flex;
+  align-items: center;
 }

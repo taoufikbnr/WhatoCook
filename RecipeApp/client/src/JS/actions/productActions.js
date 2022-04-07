@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADD_PRODUCT, ADD_PRODUCT_FAILED, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCT_FAILED, DELETE_PRODUCT_SUCCESS, GET_PRODUCT, GET_PRODUCT_FAILED, GET_PRODUCT_SUCCESS, UPDATE_PRODUCT, UPDATE_PRODUCT_FAILED, UPDATE_PRODUCT_SUCCESS } from "../actionstypes/productTypes"
+import { ADD_PRODUCT, ADD_PRODUCT_FAILED, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT, DELETE_PRODUCT_FAILED, DELETE_PRODUCT_SUCCESS, GET_PRODUCT, GET_PRODUCT_BY_ID, GET_PRODUCT_BY_ID_FAILED, GET_PRODUCT_BY_ID_SUCCESS, GET_PRODUCT_FAILED, GET_PRODUCT_SUCCESS, UPDATE_PRODUCT, UPDATE_PRODUCT_FAILED, UPDATE_PRODUCT_SUCCESS } from "../actionstypes/productTypes"
 import { getAuthUser } from "./authActions"
 
 
@@ -77,5 +77,18 @@ export  const deleteProduct=(idProduct) => async (dispatch) =>{
 
     } catch (error) {
         dispatch({type:DELETE_PRODUCT_FAILED,payload:error.response.data})
+    }
+}
+
+export const getProductById = (productId) => async (dispatch) =>{
+
+    dispatch({type:GET_PRODUCT_BY_ID})
+    try {
+        
+        const response = await axios.get(`/product/${productId}`)
+
+        dispatch({type:GET_PRODUCT_BY_ID_SUCCESS,payload:response.data})
+    } catch (error) {
+        dispatch({type:GET_PRODUCT_BY_ID_FAILED,payload:error.response.data})   
     }
 }

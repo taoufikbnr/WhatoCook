@@ -15,13 +15,13 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const error = useSelector((state) => state.authReducer.errors.errors);
 
   useEffect(() => {
     if (isAuth) {
       navigate("/");
     }
   });
-
   const register = (e) => {
     e.preventDefault();
 
@@ -31,21 +31,20 @@ const SignUp = () => {
       password,
       lastname,
     };
-
     dispatch(signUp(newUser));
 
-    setFirtname("");
-    setLastname("");
-    setEmail("");
-    setPassword("");
+    // setFirtname("");
+    // setLastname("");
+    // setEmail("");
+    // setPassword("");
   };
   return (
-    <div>
+    <div style={{backgroundImage:`url("https://thumbs.dreamstime.com/b/fond-avec-des-symboles-de-nourriture-6214044.jpg")`}}>
       <form class="login">
         <fieldset>
           <legend class="legend">Sign Up</legend>
 
-          <div>
+          <div className="block">
             <input
               class="input"
               onChange={(e) => setFirtname(e.target.value)}
@@ -54,9 +53,9 @@ const SignUp = () => {
               placeholder="firtname"
               required
             />
+      {/* <span className="error">{error && error[0].msg}</span> */}
           </div>
-
-          <div>
+          <div className="block">
             <input
               class="input"
               onChange={(e) => setLastname(e.target.value)}
@@ -65,8 +64,10 @@ const SignUp = () => {
               placeholder="lastname"
               required
             />
+          {/* <span className="error">{error && error[1].msg}</span> */}
           </div>
-          <div>
+
+          <div className="block">
             <input
               className="input"
               onChange={(e) => setEmail(e.target.value)}
@@ -75,6 +76,8 @@ const SignUp = () => {
               placeholder="email"
               required
             />
+            <h6 className="error">{error && error.filter(er=>er.param==="email").map(er=><div>{er.msg}</div>)}</h6>
+
           </div>
           <div>
             <input
@@ -85,10 +88,12 @@ const SignUp = () => {
               placeholder="Password"
               required
             />
+            <h6 className="error">{error && error.filter(er=>er.param==="password").map(er=><div>{er.msg}</div>)}</h6>
           </div>
 
           <button onClick={(e) => register(e)} type="submit" class="submit">
             <i class="fa fa-long-arrow-right"></i>
+            
           </button>
         </fieldset>
       </form>

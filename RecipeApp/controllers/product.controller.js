@@ -60,7 +60,6 @@ exports.getAllProducts = async (req, res) => {
     res.status(200).json({ msg: "Fetch products with success", allProducts });
 
   } catch (error) {
-
     
     res.status(401).json({ errors: [{ msg: "Can't find the recipes" }] });
   }

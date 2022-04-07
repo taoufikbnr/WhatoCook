@@ -53,7 +53,7 @@ Router.delete("/deleteProduct/:idProduct", isAuth(), deleteProduct);
 //getAllProducts
 Router.get("/products", getAllProducts);
 
-//  http://localhost:8000/product/:id
+//  http://localhost:8000/product/:productId
 // get Product by id
 
 Router.get("/:productId",getProductById);

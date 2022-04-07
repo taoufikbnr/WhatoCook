@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard";
+import { Comments } from "./Components/Comments/Comments";
+import Footer from "./Components/Footer/Footer";
 import GuestNav from "./Components/Header/GuestNav";
 import UserNav from "./Components/Header/UserNav";
 import Home from "./Components/Home/Home";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import ProductDetail from "./Components/Products/ProductDetail";
 import ProductList from "./Components/Products/ProductList";
 import Profile from "./Components/profile/Profile";
 import SignIn from "./Components/SignIn/SignIn";
@@ -25,11 +28,11 @@ function App() {
   }, [isAuth, dispatch]);
 
   return (
-    <div>
+    <> 
       {isAuth ? <UserNav /> : <GuestNav />}
       <Routes>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="/signin" element={ <SignIn />}></Route>
         <Route
           path="/"
           element={
@@ -46,23 +49,28 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
-          path="/users"
+        <Route
+          path="/product/:productId"
           element={
-            <PrivateRoute>
-              <UsersList />
-            </PrivateRoute>
+  
+              <ProductDetail  />
+       
           }
-        /> */}
+        />
+
         <Route path="/products" element={<ProductList  />}></Route>
          {role === "admin"?<Route path="/dashboards" 
          element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} />:<Route path="/" element={<Home/>}/>}
         <Route path="dashboard">
           <Route path="users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
           <Route path="products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
+          <Route path="comments" element={<PrivateRoute> <Comments    /> </PrivateRoute>} />
         </Route>
+
+
       </Routes>
-    </div>
+      <Footer />
+    </>
   );
 }
 

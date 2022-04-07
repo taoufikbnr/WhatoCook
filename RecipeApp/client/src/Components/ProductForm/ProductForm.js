@@ -20,13 +20,13 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   useEffect(() => {
     if (edit) {
       setname(product.name);
-      setingredient([...product.ingredient]);
-      setphoto(product.photo);
+      // setingredient([...product.ingredient]);
+     
 
     } else {
       setname("");
-      setingredient([]);
-      setphoto([]);
+      // setingredient([]);
+     ;
 
     }
   }, [edit, product]);
@@ -51,7 +51,6 @@ export const ProductForm = ({ edit, product, idProduct }) => {
 
     let updatedProduct = {
       name,
-      ingredient,
     };
 
     dispatch(updateProduct(idProduct, updatedProduct));
@@ -68,7 +67,7 @@ export const ProductForm = ({ edit, product, idProduct }) => {
           <i className="fa fa-plus"></i>
         </Button>
       )}
-      <div style={{ textAlign: "center", marginTop: 100 }}>
+      <div style={{ textAlign: "center"}}>
         <Modal show={show} onHide={handleClose} animation={false}>
           <Modal.Header closeButton>
             <Modal.Title>{edit ? "Edit" : "Add"} </Modal.Title>
