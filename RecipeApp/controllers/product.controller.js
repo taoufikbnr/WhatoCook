@@ -1,3 +1,4 @@
+const Comments = require("../models/Comments");
 const Product = require("../models/Product");
 const User = require("../models/User");
 
@@ -26,12 +27,15 @@ exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findOne({ _id: req.params.idProduct });
     if(req.user.role === "admin") {
-       await Product.findByIdAndDelete({_id: req.params.idProduct,});
+       await Product.findByIdAndDelete({_id: req.params.idProduct});
+       await Comments.deleteMany({productId: req.params.idProduct})
+
        res.status(203).json({ msg: "Product deleted by admin" });
   }  else {
     if (req.user._id.equals(product.userId)) {
 
-      await Product.findByIdAndDelete({_id: req.params.idProduct,});
+      await Product.findByIdAndDelete({_id: req.params.idProduct});
+      await Comments.deleteMany({productId: req.params.idProduct})
 
       res.status(203).json({ msg: "Product deleted successfully" });
     }}
@@ -42,9 +46,10 @@ exports.deleteProduct = async (req, res) => {
 
 
 exports.getProductById = async (req, res) => {
+  
   try {
     const product = await Product.findById(req.params.productId).populate('comments');
-    res.status(200).json({ msg: "Fetch recipe successfully", product });
+    res.status(200).json({ msg: "Try this recipe ", product });
 
   } catch (error) {
 

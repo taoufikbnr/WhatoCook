@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Card, CardGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { getAllComments } from '../../JS/actions/commentActions';
 import { getAllProducts } from '../../JS/actions/productActions';
 import { getUsers } from '../../JS/actions/userActions';
 
@@ -9,11 +10,13 @@ const AdminDashboard = () => {
     const dispatch = useDispatch()
     const users = useSelector((state) => state.userReducer.users);
     const products = useSelector((state)=> state.productReducer.products)
+    const comments = useSelector(state=>state.commentReducer.comments)
 
 
     useEffect(() => {
         dispatch(getUsers());
         dispatch(getAllProducts())
+        dispatch(getAllComments())
 
       }, [dispatch]);
     
@@ -56,7 +59,7 @@ const AdminDashboard = () => {
       <Card.Title>Comments List </Card.Title>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">Number of recipes Not available yet</small>
+      <small className="text-muted">Number of comments {comments.length}</small>
     </Card.Footer>
   </Card>
   </Link>
