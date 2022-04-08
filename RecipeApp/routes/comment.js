@@ -5,6 +5,7 @@ const isAdmin = require("../middlewares/admin");
 
 
 const Router = express.Router()
+http://localhost:8000/comment/addComment/:productId
 
 Router.post('/addComment/:productId',isAuth(),addComment)
 
@@ -12,7 +13,7 @@ Router.post('/addComment/:productId',isAuth(),addComment)
 
 Router.get('/getComments',isAuth(),getComments)
 
-//  http://localhost:8000/comment/:commenttId
+//  http://localhost:8000/comment/:commentId
 
 Router.delete('/:commentId',isAuth(),isAdmin(),deleteCommentById)
 

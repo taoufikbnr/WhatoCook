@@ -8,7 +8,9 @@ const initialState = {
     loading: false,
     products: [],
     errors: [],
-    er:false
+    er:false,
+    ingredient:[]
+    ,comments:[]
   };
 
 
@@ -27,7 +29,10 @@ const productReducer = (state=initialState,{type,payload}) => {
             msg:payload.msg,er:false} 
 
         case GET_PRODUCT_BY_ID_SUCCESS:
-            return {...state,loading:false,products:payload.product,er:false}
+            return {...state,loading:false,products:payload.product,er:false,
+            ingredient:payload.product.ingredient,
+            comments:payload.product.comments
+        }
 
 
         case ADD_PRODUCT_SUCCESS:
