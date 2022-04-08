@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonGroup, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, ButtonGroup, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteProduct } from "../../JS/actions/productActions";
@@ -57,13 +57,13 @@ const ProductCard = ({ product }) => {
             onClick={() => dispatch(deleteProduct(product._id))}
             variant="outline-success"
           >
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true"></i>
           </Button> :product.userId === user._id ? (
           <Button
             onClick={() => dispatch(deleteProduct(product._id))}
             variant="outline-danger"
           >
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true"></i>
           </Button>
         ) : null}
 </ButtonGroup>

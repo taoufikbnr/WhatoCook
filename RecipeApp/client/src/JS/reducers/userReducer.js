@@ -7,6 +7,7 @@ const initialState = {
     products:[],
     errors: [],
     er:false,
+    firstname:""
     
 }
 

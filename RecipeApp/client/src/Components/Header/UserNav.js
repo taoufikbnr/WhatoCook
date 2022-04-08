@@ -32,7 +32,7 @@ const UserNav = () => {
       <Form className="d-flex justify-content-between ">
       <NavDropdown  title={<img
             src="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249__340.png"
-            class="rounded-circle"
+            className="rounded-circle"
             height="25"
             alt="profile"
             loading="lazy"
