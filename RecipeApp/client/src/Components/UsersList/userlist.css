@@ -5,3 +5,14 @@ th,td{
     width: 100px;
     text-align: center;
 }
+.control{
+    width: 120px;
+    border: 1px solid gray;
+}
+/* .control:not(active){
+    border: 1px solid white;
+
+} */
+
+
+

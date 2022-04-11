@@ -1,0 +1,22 @@
+.card-group{
+/* display: flex; */
+margin:7rem 12%;
+justify-content: space-between;
+
+}
+.dashboard-card{
+    box-shadow: 1px 10px 20px rgba(24,132,24 , 50%);
+
+    opacity: 0.8;
+    width: 20rem;
+}
+.dashboard-card:hover {
+    box-shadow: 1px 10px 20px rgba(24,132,24 , 70%);
+
+    opacity: 1;
+
+  }
+  a{
+      text-decoration: none !important;
+      color: black !important;
+  }

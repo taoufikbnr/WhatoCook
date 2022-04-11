@@ -37,7 +37,7 @@ const UserNav = () => {
             alt="profile"
             loading="lazy"
           />} id="navbarScrollingDropdown">
-          <NavDropdown.Item ><Link to="/profile"  >Profile </Link></NavDropdown.Item>
+          <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
         
           <NavDropdown.Divider />
           <NavDropdown.Item >

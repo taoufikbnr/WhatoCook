@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard";
 import Footer from "./Components/Footer/Footer";
@@ -17,14 +17,15 @@ import UsersList from "./Components/UsersList/UsersList";
 import CommentsList from "./Components/Comments/CommentsList";
 
 import { getAuthUser } from "./JS/actions/authActions";
+import NotFound from "./Components/NotFound/NotFound";
+import { Loading } from "./Components/loading/loading";
 
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
-  const role = useSelector((state) => state.authReducer.user.role);
-
-
+ 
   useEffect(() => {
+
     dispatch(getAuthUser());
   }, [isAuth, dispatch]);
 
@@ -51,7 +52,7 @@ function App() {
           }
         />
         <Route
-          path="/product/:productId"
+           path="/product/:productId"
           element={
             <PrivateRoute>
               <ProductDetail  />
@@ -60,15 +61,17 @@ function App() {
           }
         />
 
-        <Route path="/products" element={<ProductList  />}></Route>
-         {role === "admin"?<Route path="/dashboards" 
-         element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} />:<Route path="/" element={<Home/>}/>}
+        <Route  path="/products" element={<ProductList  />}></Route>
+      <Route path="/dashboards" 
+         element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} /> 
         <Route path="dashboard">
-          <Route path="users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
-          <Route path="products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
-          <Route path="comments" element={<PrivateRoute> <CommentsList    /> </PrivateRoute>} />
+          <Route  path="users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
+          <Route   path="products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
+          <Route   path="comments" element={<PrivateRoute> <CommentsList    /> </PrivateRoute>} />
         </Route>
-
+        {/* <Route path="*" element={<Navigate  to="/" />} /> */}
+        <Route path="/loading" element={<Loading   />} />
+        <Route path="*" element={<NotFound   />} />
 
       </Routes>
       <Footer />

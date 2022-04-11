@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
-import {  Modal, Table } from "react-bootstrap";
+import {  Form, Modal, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../JS/actions/userActions";
 import { Loading } from "../loading/loading";
 import { UsersCard } from "./UsersCard";
 import "./userlist.css"
+import { useNavigate } from "react-router-dom";
 const UsersList = () => {
+
   const dispatch = useDispatch();
   const users = useSelector((state) => state.userReducer.users);
   const loading = useSelector((state) => state.userReducer.loading);
   const errors = useSelector((state) => state.userReducer.errors);
   const er = useSelector((state) => state.userReducer.er);
+  const role = useSelector((state) => state.authReducer.user.role);
+
+  const navigate = useNavigate()
+  const [searchuser, setsearchuser] = useState("")
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
 
   useEffect(() => {
+    if(role !== "admin"){
+      navigate('/')}
+
     dispatch(getUsers());
   }, [dispatch]);
 
@@ -36,7 +45,11 @@ const UsersList = () => {
             </Modal.Header>
           </Modal>
         ) : null}
-<h1>        Users List</h1>        
+<div style={{display:"flex",justifyContent:'space-between'}}>
+<h1>        Users List</h1> 
+<input className="control" type="text" placeholder="Find User" onChange={(e)=>setsearchuser(e.target.value)}/>
+
+</div>
         <Table striped bordered hover>
   <thead>
     <tr>
@@ -50,7 +63,8 @@ const UsersList = () => {
   </thead>
 
 </Table>
-        {users.map((user,i) => (
+        {users.filter(el=> el.role.includes(searchuser) || el.email.includes(searchuser) ||
+        el.firstname.toLowerCase().includes(searchuser.toLowerCase())).map((user,i) => (
        <UsersCard user={user} key={user._id} />
         ))}
     
