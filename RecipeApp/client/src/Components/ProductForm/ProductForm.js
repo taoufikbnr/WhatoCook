@@ -16,19 +16,23 @@ export const ProductForm = ({ edit, product, idProduct }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  
   useEffect(() => {
-    if (edit) {
-      setname(product.name);
-      // setingredient([...product.ingredient]);
-     
 
-    } else {
-      setname("");
-      // setingredient([]);
-     ;
+      if (edit) {
+  
+        setname(product.name);
+          setingredient([]);
+   
 
-    }
+      } else {
+        setname("");
+        setingredient([]);
+       ;
+  
+      }
+    
+    
   }, [edit, product]);
 
   const add = (e) => {
@@ -48,9 +52,16 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   };
   const update = (e) => {
     e.preventDefault();
+    // const formData = new FormData();
+
+    // for (let i = 0; i < ingredient.length; i++) {
+    //   formData.append("ingredient", ingredient[i].value);
+    // }
+
 
     let updatedProduct = {
       name,
+      ingredient:[...ingredient.map(el=>el.value)]
     };
 
     dispatch(updateProduct(idProduct, updatedProduct));
@@ -59,8 +70,8 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   return isAuth ? (
     <div>
       {edit ? (
-        <Button>
-          <i onClick={handleShow} className="fa fa-edit"></i>{" "}
+        <Button onClick={handleShow} >
+          <i className="fa fa-edit"></i>{" "}
         </Button>
       ) : (
         <Button variant="outline-success" onClick={handleShow}>

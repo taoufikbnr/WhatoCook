@@ -53,7 +53,7 @@ const UsersList = () => {
         <Table striped bordered hover>
   <thead>
     <tr>
-      <th>#</th>
+      <th>User Profile</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>

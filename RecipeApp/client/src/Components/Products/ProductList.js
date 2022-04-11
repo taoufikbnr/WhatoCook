@@ -31,8 +31,8 @@ const ProductList = () => {
     <div className="product-list">
           {products.filter((el, i) =>
             el.ingredient.join().toLowerCase().includes(search.map((el) => el.value).join()
-             )).map((product) => (
-              <ProductCard product={product} key={product._id} />
+             )).map((product,i) => (
+              <ProductCard product={product} key={i} />
             ))}
         </div>
      </div>   

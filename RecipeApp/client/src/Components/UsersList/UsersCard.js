@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { deleteUser } from '../../JS/actions/userActions'
 import "./userlist.css"
 export const UsersCard = ({user}) => {
@@ -11,7 +12,7 @@ export const UsersCard = ({user}) => {
         <Table striped bordered hover>
   <tbody>
     <tr>
-      <td>id</td>
+      <td><Link to={`/user/${user._id}`}><i className="fa fa-eye"></i> </Link></td>
       <td >{user.firstname}</td>
       <td>{user.lastname}</td>
       <td>{user.email}</td>

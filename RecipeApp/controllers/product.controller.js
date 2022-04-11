@@ -76,10 +76,10 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findById(req.params.idProduct);
 
     if (req.user._id.equals(product.userId)) {
-      await Product.findByIdAndUpdate({ _id: req.params.idProduct },{ $set: {...req.body} }
+    const p =  await Product.findByIdAndUpdate({ _id: req.params.idProduct },{ $set: {...req.body} }
       );
 
-      res.status(203).json({ msg: "Recipe updated with success" });
+      res.status(203).json({ msg: "Recipe updated with success",p });
     }
   } catch (error) {
     res.status(402).json({ errors: [{ msg: "Update product failed" }] });

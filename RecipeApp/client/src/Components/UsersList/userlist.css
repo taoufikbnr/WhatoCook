@@ -9,6 +9,9 @@ th,td{
     width: 120px;
     border: 1px solid gray;
 }
+.fa-eye{
+    color: blue;
+}
 /* .control:not(active){
     border: 1px solid white;
 

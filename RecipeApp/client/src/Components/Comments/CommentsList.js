@@ -16,7 +16,7 @@ const CommentsList = () => {
     <div style={{marginTop:120}}>
       {comment && comment.map((comment,i)=>
       
-        <CommentCard comment={comment} key={i} />
+        <CommentCard comment={comment} key={comment._id} />
         )}
     </div>
   )

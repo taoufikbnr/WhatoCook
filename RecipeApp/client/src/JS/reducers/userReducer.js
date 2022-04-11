@@ -7,7 +7,8 @@ const initialState = {
     products:[],
     errors: [],
     er:false,
-    firstname:""
+    firstname:"",
+    user:"",
     
 }
 
@@ -25,8 +26,8 @@ const userReducer = (state=initialState,{type,payload})=>{
         case GET_USER_BY_ID_SUCCESS:   
         return {...state,
             loading:false,
-            users:payload.users,
-            products:payload.users.products}
+            user:payload.user,
+            products:payload.user.products}
 
         case GET_ALL_USERS_SUCCESS:    
             return {...state,

@@ -34,8 +34,8 @@ const Profile = () => {
       </section>
 
       <section className="user-products">
-        {products.map((product) => (
-          <ProductCard product={product} key={product._id} />
+        {products.map((product,i) => (
+          <ProductCard product={product} key={i} />
         ))}
       </section>
     </div>

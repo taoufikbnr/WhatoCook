@@ -19,6 +19,7 @@ import CommentsList from "./Components/Comments/CommentsList";
 import { getAuthUser } from "./JS/actions/authActions";
 import NotFound from "./Components/NotFound/NotFound";
 import { Loading } from "./Components/loading/loading";
+import UserProfile from "./Components/UsersList/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,15 +63,14 @@ function App() {
         />
 
         <Route  path="/products" element={<ProductList  />}></Route>
-      <Route path="/dashboards" 
-         element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} /> 
-        <Route path="dashboard">
-          <Route  path="users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
-          <Route   path="products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
-          <Route   path="comments" element={<PrivateRoute> <CommentsList    /> </PrivateRoute>} />
-        </Route>
+      <Route path="/dashboard"   element={<PrivateRoute> <AdminDashboard /> </PrivateRoute>} />          
+          <Route  path="/dashboard/users"  element={<PrivateRoute> <UsersList /> </PrivateRoute>} />
+          <Route   path="/dashboard/products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
+          <Route   path="/dashboard/comments" element={<PrivateRoute> <CommentsList    /> </PrivateRoute>} />
+          <Route   path="/user/:userId" element={<PrivateRoute> <UserProfile />  </PrivateRoute>} />
+
         {/* <Route path="*" element={<Navigate  to="/" />} /> */}
-        <Route path="/loading" element={<Loading   />} />
+        {/* <Route path="/loading" element={<Loading   />} /> */}
         <Route path="*" element={<NotFound   />} />
 
       </Routes>
