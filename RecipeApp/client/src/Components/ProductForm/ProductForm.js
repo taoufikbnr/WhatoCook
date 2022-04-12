@@ -22,8 +22,9 @@ export const ProductForm = ({ edit, product, idProduct }) => {
       if (edit) {
   
         setname(product.name);
-          setingredient([]);
-   
+        setingredient([{label: product.ingredient.map(el=>el) }]);
+        // setingredient([{label: product.ingredient.map(el=>el),value: product.ingredient.map(el=>el) }]);
+
 
       } else {
         setname("");
@@ -44,6 +45,7 @@ export const ProductForm = ({ edit, product, idProduct }) => {
     for (let i = 0; i < ingredient.length; i++) {
       formData.append("ingredient", ingredient[i].value);
     }
+    
     formData.append('photo',photo);
 
 
@@ -52,11 +54,6 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   };
   const update = (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-
-    // for (let i = 0; i < ingredient.length; i++) {
-    //   formData.append("ingredient", ingredient[i].value);
-    // }
 
 
     let updatedProduct = {
@@ -70,7 +67,7 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   return isAuth ? (
     <div>
       {edit ? (
-        <Button onClick={handleShow} >
+        <Button onClick={handleShow} variant="outline-success" >
           <i className="fa fa-edit"></i>{" "}
         </Button>
       ) : (

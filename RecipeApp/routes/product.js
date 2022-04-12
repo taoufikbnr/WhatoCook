@@ -4,22 +4,10 @@ const isAuth = require("../middlewares/passport-setup");
 const multer = require("multer")
 const path = require("path");
 const { productRules,validator } = require("../middlewares/validator");
+const {upload} = require("../middlewares/uploadPicture")
 
 
 
-const storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-      cb(null,'./client/public/images/')
-
-    },
-    filename:(req,file,cb)=>{
-      cb(null,Date.now()+path.extname(file.originalname))
-      console.log(req.file)
-
-    }
-
-  })
-  let upload = multer({storage}).single("photo")
 
 // const fileFilter=(req,file,cb)=>{
 //   const allowedFileTypes = ['image/jpeg','image/jpg','image/png'];

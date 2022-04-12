@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
          
   {role ==="admin"? <Button
             onClick={() => dispatch(deleteProduct(product._id))}
-            variant="outline-success"
+            variant="outline-warning"
           >
             <i className="fa fa-trash" aria-hidden="true"></i>
           </Button> :product.userId === user._id ? (
