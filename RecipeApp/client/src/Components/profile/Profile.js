@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUser } from "../../JS/actions/authActions";
 import { updatePicture } from "../../JS/actions/userActions";
+import HandleErrors from "../HandleErrors/HandleErrors";
 import { Loading } from "../loading/loading";
 import ProductCard from "../Products/ProductCard";
 import "./profile.css"
@@ -14,6 +15,7 @@ const Profile = () => {
   const user = useSelector((state) => state.authReducer.user);
   const picture = useSelector((state) => state.authReducer.picture);
   const products = useSelector((state) => state.authReducer.products);
+  const errors = useSelector((state) => state.userReducer.errors);
 
   useEffect(() => {
     dispatch(getAuthUser())
@@ -28,28 +30,30 @@ const update =(e)=>{
   return loading ? (
     <Loading />
   ) : (
-    
     <div className="user-profile">
       <section className="user-details" >
         <label > 
             {picture? 
-            <div style={{position:"relative",width:150,color:"white"}} >
+            <div className="profile-picture-frame" >
 
           <img className="profile-picture"
              variant="top"
              src={`./images/${picture}`}
              >
                 </img>
-             <i style={{position:"absolute",right:25,top:25}} class="fa fa-camera" aria-hidden="true"></i>
+             <i className="fa fa-camera" aria-hidden="true"></i>
                     </div>
             
-              
-                
-                
-                :    <img
-          src="https://thumbs.dreamstime.com/b/icon-profile-color-green-icon-profile-color-green-circle-color-dark-green-background-color-white-194702090.jpg"
+                :  <div className="profile-picture-frame">
+                      <img
+          src="https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png"
           alt=" profile avatar"
-        />}
+        />
+        <i className="fa fa-camera" aria-hidden="true"></i>
+
+                </div>
+
+        }
 
       <input style={{display:'none'}}
               className="input"
@@ -61,14 +65,13 @@ const update =(e)=>{
 
     
 
-
-             <Button
+<div>
+<Button
               variant="outline-secondary"
-              onClick={(e) => update(e)}
-            >
-             Save
-            </Button>
+              onClick={(e) => update(e)}> Save </Button>
      
+</div>
+           
         <h2>
           {user.firstname} {user.lastname}
         </h2>
@@ -81,6 +84,7 @@ const update =(e)=>{
           <ProductCard product={product} key={i} />
         ))}
       </section>
+      {errors && <HandleErrors error={errors} /> }
     </div>
   );
 };

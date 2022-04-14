@@ -30,7 +30,6 @@ const AdminDashboard = () => {
   return (
     <>
     <CardGroup className='card-group'> 
-    {/* <div  style={{display:"flex",justifyContent:"space-between",margin:"80px 12%"}}> */}
     <Link to="/dashboard/users"  className='dashboard-card'>
   <Card >
     <Card.Img style={{height:350}} variant="top"  src="https://www.kindpng.com/picc/m/79-799916_group-of-users-font-awesome-users-icon-hd.png"
@@ -73,7 +72,6 @@ const AdminDashboard = () => {
   </Link>
    
 
-{/* </div> */}
 </CardGroup>
 
     </>

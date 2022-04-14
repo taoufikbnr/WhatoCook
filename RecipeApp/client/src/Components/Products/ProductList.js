@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../JS/actions/productActions";
+import HandleErrors from "../HandleErrors/HandleErrors";
+import HandleSuccess from "../HandleSuccess/HandleSuccess";
 import { Loading } from "../loading/loading";
 import { ProductForm } from "../ProductForm/ProductForm";
 import Select from "../Select";
@@ -13,6 +15,9 @@ const ProductList = () => {
 
   const products = useSelector((state) => state.productReducer.products);
   const loading = useSelector((state) => state.productReducer.loading);
+  const errors = useSelector((state) => state.productReducer.errors);
+  const msg = useSelector((state) => state.productReducer.msg);
+  
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -35,6 +40,9 @@ const ProductList = () => {
               <ProductCard product={product} key={i} />
             ))}
         </div>
+        {errors && <HandleErrors error={errors} /> }
+        {msg && <HandleSuccess msg={msg}/>}
+
      </div>   
     </div>  
   );

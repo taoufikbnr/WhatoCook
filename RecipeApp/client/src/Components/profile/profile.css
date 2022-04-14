@@ -14,9 +14,23 @@
     display: flex;
     justify-content: space-between;
 }
+.profile-picture-frame{
+  position:relative;
+  overflow: hidden;
+  border-radius:50%;
+  border:10px solid rgb(92, 184, 92,0.8);
+
+}
 .profile-picture{
     border-radius:50%;
     width: 150px;
     height: 150px;
-    border: 2px solid black;
+
+}
+.fa-camera{
+    position:absolute;
+    right:25px;
+    top:25px;
+    color:rgb(95, 87, 87);
+
 }

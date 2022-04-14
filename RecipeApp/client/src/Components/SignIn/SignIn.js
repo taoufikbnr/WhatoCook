@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../../JS/actions/authActions";
-import ProductCard from "../Products/ProductCard";
-import ProductList from "../Products/ProductList";
+import HandleErrors from "../HandleErrors/HandleErrors";
 import "./signin.css";
 
 const SignIn = () => {
@@ -53,8 +52,8 @@ const SignIn = () => {
                 required
               />
             </div>
-
         {error &&<div className="error">{error.msg} </div>}
+        {error.errors && <HandleErrors error={error.errors}/>}
             <button onClick={(e) => login(e)} type="submit" className="submit">
               <i className="fa fa-long-arrow-right"></i>
             </button>

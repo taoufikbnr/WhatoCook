@@ -75,7 +75,6 @@ export const updatePicture = (updatedPic) => async (dispatch) =>{
         const response = await axios.put('/user/updatePicture',updatedPic,config)
 
         dispatch({type:UPDATE_PROFILE_PICTURE_SUCCESS,payload:response.data})
-
         dispatch(getAuthUser())
     } catch (error) {
         dispatch({type:UPDATE_PROFILE_PICTURE_FAILED,payload:error.response.data})

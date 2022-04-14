@@ -48,7 +48,7 @@ const productReducer = (state=initialState,{type,payload}) => {
             return {
                 ...state,
                 loading: false,
-                errors: payload,
+                errors: payload.errors,
                 er:true,
               };
              

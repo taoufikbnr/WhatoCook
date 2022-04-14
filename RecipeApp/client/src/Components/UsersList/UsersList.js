@@ -6,6 +6,7 @@ import { Loading } from "../loading/loading";
 import { UsersCard } from "./UsersCard";
 import "./userlist.css"
 import { useNavigate } from "react-router-dom";
+import HandleSuccess from "../HandleSuccess/HandleSuccess";
 const UsersList = () => {
 
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const UsersList = () => {
   const errors = useSelector((state) => state.userReducer.errors);
   const er = useSelector((state) => state.userReducer.er);
   const role = useSelector((state) => state.authReducer.user.role);
+  const msg = useSelector((state) => state.userReducer.msg);
 
   const navigate = useNavigate()
   const [searchuser, setsearchuser] = useState("")
@@ -23,7 +25,8 @@ const UsersList = () => {
 
   useEffect(() => {
     if(role !== "admin"){
-      navigate('/')}
+      navigate('/')
+      }
 
     dispatch(getUsers());
   }, [dispatch]);
@@ -67,7 +70,7 @@ const UsersList = () => {
         el.firstname.toLowerCase().includes(searchuser.toLowerCase())).map((user,i) => (
        <UsersCard user={user} key={user._id} />
         ))}
-    
+    {msg && <HandleSuccess msg={msg}/>}
       </div>
     </>
   );

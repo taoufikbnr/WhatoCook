@@ -39,7 +39,7 @@ const SignUp = () => {
     // setPassword("");
   };
   return (
-    <div style={{backgroundImage:`url("https://thumbs.dreamstime.com/b/fond-avec-des-symboles-de-nourriture-6214044.jpg")`}}>
+    <div>
       <form class="login">
         <fieldset>
           <legend class="legend">Sign Up</legend>
@@ -53,7 +53,6 @@ const SignUp = () => {
               placeholder="firtname"
               required
             />
-      {/* <span className="error">{error && error[0].msg}</span> */}
           </div>
           <div className="block">
             <input
@@ -64,7 +63,6 @@ const SignUp = () => {
               placeholder="lastname"
               required
             />
-          {/* <span className="error">{error && error[1].msg}</span> */}
           </div>
 
           <div className="block">

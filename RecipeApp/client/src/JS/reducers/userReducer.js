@@ -35,6 +35,7 @@ const userReducer = (state=initialState,{type,payload})=>{
             return {...state,
                 loading:false,
                 users:payload.users,
+                msg:payload.msg,
                 er:false
                }  ;  
         case DELETE_USER_SUCCESS:
@@ -47,7 +48,7 @@ const userReducer = (state=initialState,{type,payload})=>{
         case UPDATE_PROFILE_PICTURE_FAILED:
             return {...state,
                 loading: false,
-                errors: payload.error,
+                errors: payload.errors,
                 er:true,
 
             };

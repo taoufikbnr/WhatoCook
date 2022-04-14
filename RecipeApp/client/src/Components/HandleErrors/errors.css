@@ -1,0 +1,9 @@
+.errors{
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    
+}
