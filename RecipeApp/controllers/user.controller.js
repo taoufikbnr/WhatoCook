@@ -44,3 +44,20 @@ exports.getAllUsers = async (req, res) => {
       
   }
 }
+
+exports.changePicture = async (req,res)=>{
+
+  try {
+    
+        const user = await User.findOne({ _id: req.user._id} );
+
+     if(req.user._id.equals(user._id)){
+      await User.findByIdAndUpdate({_id:req.user._id},{$set:{photo:req.file.filename}})
+
+     }
+    res.status(203).json({ msg: "Profile picture updated" });
+
+  } catch (error) {
+    res.status(402).json({errors:[{msg:"failed to upload"}]})
+  }
+}

@@ -1,4 +1,4 @@
-import { DELETE_USER, DELETE_USER_FAILED, DELETE_USER_SUCCESS, GET_ALL_USERS, GET_ALL_USERS_FAILED, GET_ALL_USERS_SUCCESS, GET_USER_BY_ID, GET_USER_BY_ID_FAILED, GET_USER_BY_ID_SUCCESS } from "../actionstypes/userTypes"
+import { DELETE_USER, DELETE_USER_FAILED, DELETE_USER_SUCCESS, GET_ALL_USERS, GET_ALL_USERS_FAILED, GET_ALL_USERS_SUCCESS, GET_USER_BY_ID, GET_USER_BY_ID_FAILED, GET_USER_BY_ID_SUCCESS, UPDATE_PROFILE_PICTURE, UPDATE_PROFILE_PICTURE_FAILED, UPDATE_PROFILE_PICTURE_SUCCESS } from "../actionstypes/userTypes"
 import axios from "axios";
 import { getAuthUser } from "./authActions";
 
@@ -62,3 +62,23 @@ export const deleteUser = (userId)=> async (dispatch) =>{
 
     }
 } 
+
+export const updatePicture = (updatedPic) => async (dispatch) =>{
+    dispatch({type:UPDATE_PROFILE_PICTURE})
+ 
+    try {
+        const config = {
+            headers: {
+              authorization: localStorage.getItem("token"),
+            },
+          };
+        const response = await axios.put('/user/updatePicture',updatedPic,config)
+
+        dispatch({type:UPDATE_PROFILE_PICTURE_SUCCESS,payload:response.data})
+
+        dispatch(getAuthUser())
+    } catch (error) {
+        dispatch({type:UPDATE_PROFILE_PICTURE_FAILED,payload:error.response.data})
+    }
+
+}

@@ -18,6 +18,7 @@ import {
     isAuth: false,
     products: [],
     user: {},
+    picture:""
     
   };
   
@@ -49,6 +50,7 @@ import {
         loading:false,
         user:payload,
         products: payload.products,
+        picture:payload.photo,
         isAuth:true
       }
         case SIGN_UP_FAILED:

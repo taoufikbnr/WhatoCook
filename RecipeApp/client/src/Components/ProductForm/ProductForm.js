@@ -22,7 +22,7 @@ export const ProductForm = ({ edit, product, idProduct }) => {
       if (edit) {
   
         setname(product.name);
-        setingredient([{label: product.ingredient.map(el=>el) }]);
+        setingredient([]);
         // setingredient([{label: product.ingredient.map(el=>el),value: product.ingredient.map(el=>el) }]);
 
 
@@ -67,8 +67,8 @@ export const ProductForm = ({ edit, product, idProduct }) => {
   return isAuth ? (
     <div>
       {edit ? (
-        <Button onClick={handleShow} variant="outline-success" >
-          <i className="fa fa-edit"></i>{" "}
+        <Button onClick={handleShow} variant="outline-secondary" >
+          <i className="fa fa-edit"></i>
         </Button>
       ) : (
         <Button variant="outline-success" onClick={handleShow}>

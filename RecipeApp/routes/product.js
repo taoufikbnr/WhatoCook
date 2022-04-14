@@ -1,24 +1,9 @@
 const express = require("express");
 const {addProduct,deleteProduct,getProductById,getAllProducts,updateProduct,} = require("../controllers/product.controller");
 const isAuth = require("../middlewares/passport-setup");
-const multer = require("multer")
-const path = require("path");
 const { productRules,validator } = require("../middlewares/validator");
 const {upload} = require("../middlewares/uploadPicture")
 
-
-
-
-// const fileFilter=(req,file,cb)=>{
-//   const allowedFileTypes = ['image/jpeg','image/jpg','image/png'];
-//   if(allowedFileTypes.includes(file.mimetype)){
-//     cb(null,true);}
-//     else{
-
-//       cb(null,false)
-//     }
-  
-// }
 
 const Router = express.Router();
 
