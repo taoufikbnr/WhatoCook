@@ -1,4 +1,4 @@
-import { DELETE_USER, DELETE_USER_FAILED, DELETE_USER_SUCCESS, GET_ALL_USERS, GET_ALL_USERS_FAILED, GET_ALL_USERS_SUCCESS, GET_USER_BY_ID, GET_USER_BY_ID_FAILED, GET_USER_BY_ID_SUCCESS } from "../actionstypes/userTypes";
+import { DELETE_USER, DELETE_USER_FAILED, DELETE_USER_SUCCESS, GET_ALL_USERS, GET_ALL_USERS_FAILED, GET_ALL_USERS_SUCCESS, GET_USER_BY_ID, GET_USER_BY_ID_FAILED, GET_USER_BY_ID_SUCCESS, UPDATE_PROFILE_PICTURE,UPDATE_PROFILE_PICTURE_FAILED,UPDATE_PROFILE_PICTURE_SUCCESS } from "../actionstypes/userTypes";
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
     er:false,
     firstname:"",
     user:"",
+    picture:[]
     
 }
 
@@ -19,6 +20,7 @@ const userReducer = (state=initialState,{type,payload})=>{
         case GET_USER_BY_ID:
         case GET_ALL_USERS:   
         case DELETE_USER: 
+        case UPDATE_PROFILE_PICTURE:
             return {...state,
                 loading:true}
            
@@ -36,13 +38,13 @@ const userReducer = (state=initialState,{type,payload})=>{
                 er:false
                }  ;  
         case DELETE_USER_SUCCESS:
-           return {...state,loading:false,
-
-        msg:payload.msg}      
+        case UPDATE_PROFILE_PICTURE_SUCCESS:
+           return {...state,loading:false,msg:payload.msg}      
 
         case GET_USER_BY_ID_FAILED:
         case GET_ALL_USERS_FAILED:   
         case DELETE_USER_FAILED: 
+        case UPDATE_PROFILE_PICTURE_FAILED:
             return {...state,
                 loading: false,
                 errors: payload.error,

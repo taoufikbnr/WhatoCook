@@ -8,9 +8,7 @@ const Select = ({ingredient , setingredient,search, setsearch, isFilter}) => {
     { label: "Mango 🍍", value: "mango" },
     { label: "Strawberry 🍓", value: "strawberry"},
     { label: "Banana 🍌", value: "banana"},
-
-    
-     //disabled: true 
+       //disabled: true 
   ]
   return (
     <div>

@@ -7,7 +7,10 @@ const productSchema = mongoose.Schema({
         ref: "User"
     },
 
-    name : String,
+    name : {
+      type:String,
+      required:true
+    },
     ingredient: {
         type: Array,
       }, 
