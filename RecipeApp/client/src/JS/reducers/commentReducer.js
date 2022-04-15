@@ -27,7 +27,7 @@ const  commentReducer = (state=initialState,{type,payload}) =>{
           case ADD_COMMENT_FAILED:
           case DELETE_COMMENT_FAILED:        
         
-              return {...state,loading:false,errors:payload}    
+              return {...state,loading:false,errors:payload.errors}    
         default:
             return state ;
     }

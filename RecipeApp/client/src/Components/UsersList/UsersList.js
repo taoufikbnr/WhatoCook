@@ -24,7 +24,7 @@ const UsersList = () => {
   const handleClose = () => setShow(false);
 
   useEffect(() => {
-    if(role !== "admin"){
+    if(role === "client"){
       navigate('/')
       }
 

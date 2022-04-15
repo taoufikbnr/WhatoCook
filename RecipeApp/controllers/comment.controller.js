@@ -35,6 +35,8 @@ exports.deleteCommentById = async ( req,res)=>{
 
     try {
         await Comments.findByIdAndDelete(req.params.commentId)
+        await Product.updateMany({ $pull: { comments: { $in:[req.params.commentId]  }}})
+
         res.status(202).json({msg:"comment deleted successfuly"})
     } catch (error) {
         res.status(403).json({errors:[{msg:"Access Denied"}]})

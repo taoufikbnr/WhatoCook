@@ -17,4 +17,4 @@ const HandleErrors = ({error}) => {
   )
 }
 
-export default HandleErrors
+export default HandleErrors;

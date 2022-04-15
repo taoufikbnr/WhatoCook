@@ -28,6 +28,7 @@ const userReducer = (state=initialState,{type,payload})=>{
         case GET_USER_BY_ID_SUCCESS:   
         return {...state,
             loading:false,
+            msg:payload.msg,
             user:payload.user,
             products:payload.user.products}
 
