@@ -29,6 +29,7 @@ exports.deleteProduct = async (req, res) => {
     if(req.user.role === "admin") {
        await Product.findByIdAndDelete({_id: req.params.idProduct});
        await Comments.deleteMany({productId: req.params.idProduct})
+       await User.updateMany({ $pull: { products: { $in:[req.params.idProduct]  }}})
 
        res.status(203).json({ msg: "Product deleted by admin" });
   }  else {
@@ -36,6 +37,7 @@ exports.deleteProduct = async (req, res) => {
 
       await Product.findByIdAndDelete({_id: req.params.idProduct});
       await Comments.deleteMany({productId: req.params.idProduct})
+      await User.updateMany({ $pull: { products: { $in:[req.params.idProduct]  }}})
 
       res.status(203).json({ msg: "Product deleted successfully" });
     }}

@@ -54,8 +54,8 @@ export const deleteComment = (commentId,productId) => async (dispatch) =>{
 
         dispatch({type:DELETE_COMMENT_SUCCESS,payload:response.data})
     dispatch(getProductById(productId))    
-    dispatch(getAuthUser())
     dispatch(getAllComments())
+    dispatch(getAuthUser())
     } catch (error) {
         dispatch({type:DELETE_COMMENT,payload:error.response.data})
     }

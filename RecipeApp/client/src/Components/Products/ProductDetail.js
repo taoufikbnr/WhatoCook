@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getProductById } from '../../JS/actions/productActions';
 import { addComment } from '../../JS/actions/commentActions';
 import CommentCard from '../Comments/CommentCard';
+import HandleErrors from '../HandleErrors/HandleErrors';
 
 const ProductDetail = () => {
     const [text, settext] = useState("");
@@ -14,7 +15,8 @@ const ProductDetail = () => {
     const ingredient = useSelector((state) => state.productReducer.ingredient);
     const user = useSelector((state) => state.authReducer.user);
     const comment = useSelector((state) => state.productReducer.comments);
-
+    const errors = useSelector((state) => state.commentReducer.errors);
+   
     const {productId}= useParams()
 
     useEffect(() => {
@@ -28,7 +30,6 @@ const ProductDetail = () => {
        text
      }
       dispatch(addComment(productId,newComment))
-
       settext("");
     }
   
@@ -56,6 +57,7 @@ const ProductDetail = () => {
                <div className="form-floating mb-3">
                   <textarea className="form-control w-100"
                             placeholder="Leave a comment here"
+                            value={text}
                       onChange={(e)=>settext(e.target.value)}     required></textarea>
                   <label  >Leave a comment here</label>
                </div>
@@ -69,6 +71,8 @@ const ProductDetail = () => {
       </div>
          </div>
 </div>
+<HandleErrors  error={errors} />
+
 
     
    

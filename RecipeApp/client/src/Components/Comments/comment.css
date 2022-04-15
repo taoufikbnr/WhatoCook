@@ -32,7 +32,6 @@ p::after {
     top: 10px;
     left: -17px;
 }
-/* .fa-trash{
-    color: red;
+.fa-trash{
     cursor: pointer;
-} */
+}
