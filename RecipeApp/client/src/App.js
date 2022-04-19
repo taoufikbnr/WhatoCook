@@ -20,6 +20,7 @@ import { getAuthUser } from "./JS/actions/authActions";
 import NotFound from "./Components/NotFound/NotFound";
 import { Loading } from "./Components/loading/loading";
 import UserProfile from "./Components/UsersList/UserProfile";
+import Signtest from "./Components/SignUp/Signtest";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,9 +69,9 @@ function App() {
           <Route   path="/dashboard/products" element={<PrivateRoute> <ProductList    /> </PrivateRoute>} />
           <Route   path="/dashboard/comments" element={<PrivateRoute> <CommentsList    /> </PrivateRoute>} />
           <Route   path="/user/:userId" element={<PrivateRoute> <UserProfile />  </PrivateRoute>} />
+          <Route   path="/test" element={<Signtest />}/>
 
         {/* <Route path="*" element={<Navigate  to="/" />} /> */}
-        {/* <Route path="/loading" element={<Loading   />} /> */}
         <Route path="*" element={<NotFound   />} />
 
       </Routes>

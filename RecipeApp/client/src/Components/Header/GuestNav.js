@@ -28,6 +28,7 @@ Sign Up</Button>
         <Link to="/signin">
         <Button style={{marginLeft:"10px"}} variant="outline-success"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Button>
         </Link>
+        <Link to="/test">test</Link>
       </Form>
     </Navbar.Collapse>
   </Container>
