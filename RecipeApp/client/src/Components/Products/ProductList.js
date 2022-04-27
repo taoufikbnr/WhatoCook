@@ -25,7 +25,7 @@ const ProductList = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div >
+    <div className="component-container" >
       <div style={{ position: "fixed", top: "10%", left: "50%" }}>
         <ProductForm edit={false} />
       </div>
@@ -35,7 +35,7 @@ const ProductList = () => {
     </div>
     <div className="product-list">
           {products.filter((el, i) =>
-            el.ingredient.join().toLowerCase().includes(search.map((el) => el.value).join()
+            el.ingredient.sort().join().toLowerCase().includes(search.map((el) => el.value).sort()
              )).map((product,i) => (
               <ProductCard product={product} key={i} />
             ))}

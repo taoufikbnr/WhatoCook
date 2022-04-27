@@ -13,7 +13,7 @@ const CommentsList = () => {
     dispatch(getUsers())
   }, [dispatch]);
   return (
-    <div style={{marginTop:120}}>
+    <div className='component-container' >
     <h1>Comments List</h1>
     {comment.length === 0 && <h6>There are no comments</h6>}
       {comment && comment.map((comment,i)=>

@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { Carousel, FormControl } from "react-bootstrap";
-import IngredientsCard from "../Ingredients/IngredientsCard";
-
-import ProductList from "../Products/ProductList";
-import Select from "../Select";
-
+import "./home.css"
 
 const Home = () => {
 
 
   return (
     <> 
-    <Carousel style={{marginTop:50}} >
+    <Carousel  >
   <Carousel.Item interval={1000}>
     <img 
       className="d-block w-100"

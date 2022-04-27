@@ -27,7 +27,7 @@ const UserNav = () => {
         <Nav.Link href='/products' >Recipes</Nav.Link>
    
  
-       {role ==="admin" ?<Link to="/dashboard"><Button variant="outline-success" >Admin Dashbord</Button> </Link>:null}
+       {role ==="admin" ?<Link to="/dashboard"><Button variant="outline-light" >Admin Dashbord</Button> </Link>:null}
       </Nav>
       <Form className="d-flex justify-content-between ">
       <NavDropdown  title={<img

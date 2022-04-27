@@ -22,12 +22,13 @@ const GuestNav = () => {
       </Nav>
       <Form className="d-flex justify-content-between ">
         <Link to="/signup">        
-        <Button  variant="outline-success"><i className="fa fa-user-plus" aria-hidden="true"></i>
+        <Button  variant="outline-light"><i className="fa fa-user-plus" aria-hidden="true"></i>
 Sign Up</Button>
         </Link>
         <Link to="/signin">
-        <Button style={{marginLeft:"10px"}} variant="outline-success"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Button>
+        <Button style={{marginLeft:"10px"}} variant="outline-light"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Button>
         </Link>
+        <Link to="/test">test</Link>
       </Form>
     </Navbar.Collapse>
   </Container>

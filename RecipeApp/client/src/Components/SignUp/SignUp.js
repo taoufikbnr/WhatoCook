@@ -39,7 +39,8 @@ const SignUp = () => {
     // setPassword("");
   };
   return (
-    <div>
+    <div className="component-section">
+    <div style={{ display: "flex"}}>
       <form class="login">
         <fieldset>
           <legend class="legend">Sign Up</legend>
@@ -95,6 +96,7 @@ const SignUp = () => {
           </button>
         </fieldset>
       </form>
+      </div>
     </div>
   );
 };

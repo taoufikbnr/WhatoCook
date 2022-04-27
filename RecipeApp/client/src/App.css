@@ -1,0 +1,10 @@
+html,body{
+    height: 100vh;
+    width: 100wh;
+}
+.app{
+   background-image: url("https://wallpaper.dog/large/20486714.jpg");
+   fill:cover
+
+}
+

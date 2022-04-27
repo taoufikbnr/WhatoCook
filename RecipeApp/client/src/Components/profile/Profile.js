@@ -30,7 +30,7 @@ const update =(e)=>{
   return loading ? (
     <Loading />
   ) : (
-    <div className="user-profile">
+    <div className="user-profile component-section">
       <section className="user-details" >
         <label > 
             {picture? 
