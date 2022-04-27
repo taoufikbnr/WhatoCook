@@ -25,7 +25,7 @@ const ProductList = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div >
+    <div className="component-container" >
       <div style={{ position: "fixed", top: "10%", left: "50%" }}>
         <ProductForm edit={false} />
       </div>

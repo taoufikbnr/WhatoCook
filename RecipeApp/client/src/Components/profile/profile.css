@@ -1,6 +1,9 @@
 
+.component-section{
+        min-height: 100vh;
+}
 .user-profile{
-    margin-top: 80px;
+    padding-top: 80px;
 }
 .user-details{
     text-align: center;

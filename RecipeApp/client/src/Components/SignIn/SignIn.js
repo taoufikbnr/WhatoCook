@@ -28,7 +28,8 @@ const SignIn = () => {
   };
   return (
     <>
-      <div style={{ display: "flex"}}>
+      <div className="component-section" >
+        <div style={{ display: "flex"}}> 
         <form className="login">
           <fieldset>
             <legend className="legend">Login</legend>
@@ -59,6 +60,7 @@ const SignIn = () => {
             </button>
                  </fieldset>
         </form>
+        </div>
       </div>
     </>
   );

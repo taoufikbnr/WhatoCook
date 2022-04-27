@@ -28,7 +28,7 @@ const AdminDashboard = () => {
       }, [dispatch,role,navigate]);
     
   return (
-    <>
+    <div className='component-container'>
     <CardGroup className='card-group'> 
     <Link to="/dashboard/users"  className='dashboard-card'>
   <Card >
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
 
 </CardGroup>
 
-    </>
+    </div>
   )
 }
 

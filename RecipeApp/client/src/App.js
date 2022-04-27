@@ -32,7 +32,7 @@ function App() {
   }, [isAuth, dispatch]);
 
   return (
-    <> 
+    <div className="app"> 
       {isAuth ? <UserNav /> : <GuestNav />}
       <Routes>
         <Route path="/signup" element={<SignUp />}></Route>
@@ -76,7 +76,7 @@ function App() {
 
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

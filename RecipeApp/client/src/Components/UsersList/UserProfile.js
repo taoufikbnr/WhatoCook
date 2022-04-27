@@ -5,7 +5,7 @@ import { getUserById } from '../../JS/actions/userActions'
 import HandleSuccess from "../HandleSuccess/HandleSuccess";
 import ProductCard from '../Products/ProductCard'
 import ProfileCard from '../profile/ProfileCard'
-
+import "./userlist.css"
 
 const UserProfile = () => {
     const user = useSelector((state) => state.userReducer.user);
@@ -20,13 +20,13 @@ const UserProfile = () => {
     }, [dispatch,userId])
     
   return (
-    <>
-    <div style={{marginTop:150}}>
+    <div className='component-section'>
+    <div style={{padding:100}} >
         <ProfileCard user={user} products={products} />
         {msg && <HandleSuccess msg={msg} /> }
         {/* {products && products.map(product=><ProductCard product={product}  /> )} */}
         </div>
-    </>
+    </div>
   )
 }
 

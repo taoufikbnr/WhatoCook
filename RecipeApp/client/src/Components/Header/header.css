@@ -4,8 +4,12 @@
     padding: 7px;
     border-radius: 2px;
 } */
+.navbar-brand{
+    color: white !important;
+    font-size:x-large !important;
+}
 .navbar{
-    background-image: url("https://thumbs.dreamstime.com/b/fond-avec-des-symboles-de-nourriture-6214044.jpg")
+    background: rgba(25, 139, 25, 0.671);
 
 }
 .dropdown-toggle::after {
@@ -25,5 +29,5 @@
 .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: rgba(92, 184, 92, 0.173) !important;
+    background-color: rgba(212, 151, 38, 0) !important;
 }

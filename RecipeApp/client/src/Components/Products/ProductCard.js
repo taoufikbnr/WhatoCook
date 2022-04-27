@@ -11,9 +11,9 @@ const ProductCard = ({ product }) => {
   const role = useSelector((state) => state.authReducer.user.role);
 
   return (
-    <>
+    <div >
       <Card
-       className="product-card"
+       className="product-card "
       >
       <div className="card-container">
            {product.photo.map(el =>
@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
   </div>
 
       </Card>
-    </>
+    </div>
   );
 };
 
