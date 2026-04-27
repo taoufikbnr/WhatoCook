@@ -26,7 +26,7 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
   const [fetchError, setFetchError] = useState("");
 
   const [ingredientSearch, setIngredientSearch] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState(["egg"]); 
+  const [selectedIngredients, setSelectedIngredients] = useState([]); 
   const [collapsedCategories, setCollapsedCategories] = useState({});
 
   const ingredientIndex = useMemo(() => {
