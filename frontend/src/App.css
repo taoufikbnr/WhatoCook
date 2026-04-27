@@ -1,0 +1,36 @@
+:root {
+  --app-nav-height: 64px;
+  --app-footer-height: 44px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  background-image: url("https://images8.alphacoders.com/888/888053.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+.app-main {
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: calc(var(--app-nav-height) + 10px);
+  padding-bottom: calc(var(--app-footer-height) + 10px);
+}

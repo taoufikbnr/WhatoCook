@@ -1,0 +1,18 @@
+.not-found-container {
+    display: flex;
+    align-items: center;
+    min-height: 250px;
+    position: fixed;
+    top:30%;
+    left:30%;
+}.not-found-code {
+    font-family: SourceCodePro,Menlo,Monaco,Consolas,'Courier New',monospace;
+    font-weight: 700;
+    font-size: 23px;
+    margin-left: 20px;
+}
+
+.not-found-image {
+    width: 250px;
+    height: 250px;
+}
