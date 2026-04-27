@@ -31,5 +31,5 @@ html, body {
   height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
-  padding-top: 20px;
+  margin: 20px;
 }

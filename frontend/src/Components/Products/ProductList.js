@@ -26,7 +26,7 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
   const [fetchError, setFetchError] = useState("");
 
   const [ingredientSearch, setIngredientSearch] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState([]); 
+  const [selectedIngredients, setSelectedIngredients] = useState(["egg"]); 
   const [collapsedCategories, setCollapsedCategories] = useState({});
 
   const ingredientIndex = useMemo(() => {
@@ -145,7 +145,7 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
       const next = { ...prev };
       for (const [category] of visibleByCategory) {
         if (typeof next[category] !== "boolean") {
-          next[category] = false; // expanded by default
+          next[category] = true; // expanded by default
         }
       }
       return next;

@@ -1,5 +1,5 @@
 .component-container{
-    height: 100%;
+    height: calc(100% - var(--app-nav-height));
     margin: 0 8%;
     overflow: hidden;
 }

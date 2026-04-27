@@ -7,6 +7,7 @@ export const INGREDIENT_CATEGORIES = [
   "Fruits",
   "Oils & Fats",
   "Pantry Essentials",
+  "Proteins",
 ];
 
 // Curated, realistic starter catalog. Expand freely (the UI auto-updates).
@@ -26,7 +27,7 @@ export const INGREDIENTS_BY_CATEGORY = {
     "Chili pepper",
     "Jalapeño",
     "Zucchini",
-    "Eggplant",
+    "Egg plants",
     "Mushroom",
     "Spinach",
     "Kale",
@@ -124,7 +125,13 @@ export const INGREDIENTS_BY_CATEGORY = {
     "Sake",
     "Kombu",
     "Nori",
+
   ],
+  "Proteins":[
+    "Egg",
+    "Chicken",
+    "Beef",
+  ]
 };
 
 const CATEGORY_BY_NORMALIZED_INGREDIENT = (() => {
