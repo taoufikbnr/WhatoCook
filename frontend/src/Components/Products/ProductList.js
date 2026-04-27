@@ -15,19 +15,18 @@ function getMealIngredients(meal) {
 }
 
 function ingredientImageUrl(ingredientName) {
-  // TheMealDB ingredient images (works with the provided data).
   const encoded = encodeURIComponent(ingredientName.trim());
   return `https://www.themealdb.com/images/ingredients/${encoded}-Small.png`;
 }
 
 
-const ProductList = () => {
+const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
   const [meals, setMeals] = useState([]);
-  const [fetchStatus, setFetchStatus] = useState("idle"); // idle | loading | success | error
+  const [fetchStatus, setFetchStatus] = useState("idle"); 
   const [fetchError, setFetchError] = useState("");
 
   const [ingredientSearch, setIngredientSearch] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState([]); // array of display names
+  const [selectedIngredients, setSelectedIngredients] = useState([]); 
   const [collapsedCategories, setCollapsedCategories] = useState({});
 
   const ingredientIndex = useMemo(() => {
@@ -236,9 +235,22 @@ const ProductList = () => {
         </div>
 
         <div className="ibfp-grid">
-          <aside className="ibfp-panel">
+          <aside
+            className={
+              mobileSidebarOpen
+                ? "ibfp-panel ibfp-panelMobileOpen"
+                : "ibfp-panel"
+            }
+          >
             <div className="ibfp-panelHeader">
               <h2 className="ibfp-panelTitle">Ingredients</h2>
+              <button
+                className="ibfp-btn ibfp-mobileOnlyBtn"
+                onClick={() => setMobileSidebarOpen(false)}
+                type="button"
+              >
+                Close
+              </button>
               <input
                 className="ibfp-input"
                 value={ingredientSearch}
@@ -372,6 +384,14 @@ const ProductList = () => {
             </div>
           </main>
         </div>
+        {mobileSidebarOpen ? (
+          <button
+            className="ibfp-mobileOverlay"
+            onClick={() => setMobileSidebarOpen(false)}
+            aria-label="Close ingredient sidebar"
+            type="button"
+          />
+        ) : null}
       </div>
     </div>
   );

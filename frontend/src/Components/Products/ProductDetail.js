@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../../JS/actions/productActions';
 import { addComment } from '../../JS/actions/commentActions';
 import CommentCard from '../Comments/CommentCard';
 import HandleErrors from '../HandleErrors/HandleErrors';

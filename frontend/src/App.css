@@ -31,6 +31,5 @@ html, body {
   height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
-  padding-top: calc(var(--app-nav-height) + 10px);
-  padding-bottom: calc(var(--app-footer-height) + 10px);
+  padding-top: 20px;
 }
