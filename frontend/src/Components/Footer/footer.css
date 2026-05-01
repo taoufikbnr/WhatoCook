@@ -5,11 +5,12 @@
   bottom: 0;
   z-index: 1000;
   height: var(--app-footer-height);
+  box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(8, 10, 16, 0.82);
   backdrop-filter: blur(8px);
   color: rgba(255, 255, 255, 0.88);
-  padding: 8px 0;
+  padding: 0;
   flex: 0 0 auto;
   display: flex;
   align-items: center;

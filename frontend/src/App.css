@@ -12,10 +12,12 @@ html, body {
 
 #root {
   height: 100vh;
+  height: 100dvh;
 }
 
 .app {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 
@@ -28,8 +30,10 @@ html, body {
 }
 
 .app-main {
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
   box-sizing: border-box;
   overflow: hidden;
-  margin: 20px;
+  padding-top: calc(var(--app-nav-height) + 20px);
+  padding-bottom: calc(var(--app-footer-height) + 12px);
 }

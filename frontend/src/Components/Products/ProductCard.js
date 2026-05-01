@@ -67,7 +67,7 @@ const ProductCard = ({ product, matchCount, selectedCount, selectedKeys }) => {
             <div className="ibfp-sectionLabel">All ingredients</div>
             <div className="ibfp-chipRow">
               {ingredients.map((name) => {
-                const isMatch = selectedKeys.has(normalizeIngredientName(name));
+                const isMatch = selectedKeys.has(normalizeIngredientName(name));                
                 return (
                   <span
                     key={normalizeIngredientName(name)}

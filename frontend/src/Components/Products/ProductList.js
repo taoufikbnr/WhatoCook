@@ -26,7 +26,7 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
   const [fetchError, setFetchError] = useState("");
 
   const [ingredientSearch, setIngredientSearch] = useState("");
-  const [selectedIngredients, setSelectedIngredients] = useState([]); 
+  const [selectedIngredientKeys, setSelectedIngredientKeys] = useState([]);
   const [collapsedCategories, setCollapsedCategories] = useState({});
 
   const ingredientIndex = useMemo(() => {
@@ -34,8 +34,13 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
   }, []);
 
   const selectedKeys = useMemo(() => {
-    return new Set(selectedIngredients.map(normalizeIngredientName));
-  }, [selectedIngredients]);
+    return new Set(selectedIngredientKeys);
+  }, [selectedIngredientKeys]);
+
+  const selectedIngredients = useMemo(() => {
+    if (selectedKeys.size === 0) return [];
+    return ingredientIndex.filter((ingredient) => selectedKeys.has(ingredient.key));
+  }, [ingredientIndex, selectedKeys]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -183,19 +188,17 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
     return scored;
   }, [meals, selectedKeys]);
 
-  function toggleIngredient(displayName) {
-    const key = normalizeIngredientName(displayName);
-    setSelectedIngredients((prev) => {
-      const prevKeys = new Set(prev.map(normalizeIngredientName));
-      if (prevKeys.has(key)) {
-        return prev.filter((x) => normalizeIngredientName(x) !== key);
+  function toggleIngredient(ingredientKey) {
+    setSelectedIngredientKeys((prev) => {
+      if (prev.includes(ingredientKey)) {
+        return prev.filter((key) => key !== ingredientKey);
       }
-      return [...prev, displayName];
+      return [...prev, ingredientKey];
     });
   }
 
   function clearSelection() {
-    setSelectedIngredients([]);
+    setSelectedIngredientKeys([]);
   }
 
   function toggleCategory(category) {
@@ -260,97 +263,100 @@ const ProductList = ({mobileSidebarOpen, setMobileSidebarOpen}) => {
               />
             </div>
 
-            {fetchStatus === "error" ? (
-              <div className="ibfp-emptyState">
-                <div className="ibfp-emptyTitle">Couldn’t load meals</div>
-                <div className="ibfp-emptyText">{fetchError}</div>
-                <button
-                  className="ibfp-btn"
-                  onClick={() => window.location.reload()}
-                >
-                  Retry
-                </button>
-              </div>
-            ) : null}
+            <div className="ibfp-panelBody">
+              {fetchStatus === "error" ? (
+                <div className="ibfp-emptyState">
+                  <div className="ibfp-emptyTitle">Couldn’t load meals</div>
+                  <div className="ibfp-emptyText">{fetchError}</div>
+                  <button
+                    className="ibfp-btn"
+                    onClick={() => window.location.reload()}
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : null}
 
-            {selectedIngredients.length > 0 && (
-              <div className="ibfp-selectedBar">
-                {selectedIngredients
-                  .slice()
-                  .sort((a, b) => a.localeCompare(b))
-                  .map((name) => (
-                    <button
-                      key={normalizeIngredientName(name)}
-                      className="ibfp-chip ibfp-chipSelected"
-                      onClick={() => toggleIngredient(name)}
-                      title="Click to remove"
-                    >
-                      {name}
-                      <span className="ibfp-chipX">×</span>
-                    </button>
-                  ))}
-              </div>
-            )}
+              {selectedIngredients.length > 0 && (
+                <div className="ibfp-selectedBar">
+                  {selectedIngredients
+                    .slice()
+                    .sort((a, b) => a.displayName.localeCompare(b.displayName))
+                    .map((ingredient) => (
+                      <button
+                        key={ingredient.key}
+                        className="ibfp-chip ibfp-chipSelected"
+                        onClick={() => toggleIngredient(ingredient.key)}
+                        title="Click to remove"
+                      >
+                        {ingredient.displayName}
+                        <span className="ibfp-chipX">×</span>
+                      </button>
+                    ))}
+                </div>
+              )}
 
-            <div className="ibfp-ingredientGroups">
-              {visibleByCategory.map(([category, items]) => {
-                if (!items || items.length === 0) return null;
-                const isCollapsed = Boolean(collapsedCategories[category]);
-                return (
-                  <section key={category} className="ibfp-ingredientGroup">
-                    <button
-                      className="ibfp-ingredientGroupHeader ibfp-ingredientGroupToggle"
-                      type="button"
-                      onClick={() => toggleCategory(category)}
-                      aria-expanded={!isCollapsed}
-                    >
-                      <div className="ibfp-ingredientGroupTitle">{category}</div>
-                      <div className="ibfp-ingredientGroupRight">
-                        <div className="ibfp-ingredientGroupCount">
-                          {items.length}
+              <div className="ibfp-ingredientGroups">
+                {visibleByCategory.map(([category, items]) => {
+                  if (!items || items.length === 0) return null;
+                  const isCollapsed = Boolean(collapsedCategories[category]);
+                  return (
+                    <section key={category} className="ibfp-ingredientGroup">
+                      <button
+                        className="ibfp-ingredientGroupHeader ibfp-ingredientGroupToggle"
+                        type="button"
+                        onClick={() => toggleCategory(category)}
+                        aria-expanded={!isCollapsed}
+                      >
+                        <div className="ibfp-ingredientGroupTitle">{category}</div>
+                        <div className="ibfp-ingredientGroupRight">
+                          <div className="ibfp-ingredientGroupCount">
+                            {items.length}
+                          </div>
+                          <span className="ibfp-ingredientChevron">
+                            {isCollapsed ? "▸" : "▾"}
+                          </span>
                         </div>
-                        <span className="ibfp-ingredientChevron">
-                          {isCollapsed ? "▸" : "▾"}
-                        </span>
-                      </div>
-                    </button>
+                      </button>
 
-                    {!isCollapsed ? (
-                      <div className="ibfp-ingredientList" role="list">
-                        {items.map((ing) => {
-                          const isSelected = selectedKeys.has(ing.key);
-                          return (
-                            <button
-                              key={ing.key}
-                              className={
-                                isSelected
-                                  ? "ibfp-ingredientCard ibfp-ingredientCardSelected"
-                                  : "ibfp-ingredientCard"
-                              }
-                              onClick={() => toggleIngredient(ing.displayName)}
-                              role="listitem"
-                              type="button"
-                            >
-                              <img
-                                className="ibfp-ingredientImg"
-                                src={ingredientImageUrl(ing.displayName)}
-                                alt={ing.displayName}
-                                loading="lazy"
-                                onError={(e) => {
-                                  e.currentTarget.style.visibility = "hidden";
-                                }}
-                              />
-                              <div className="ibfp-ingredientName">
-                                {ing.displayName}
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    ) : null}
-                  </section>
-                );
-              })}
+                      {!isCollapsed ? (
+                        <div className="ibfp-ingredientList" role="list">
+                          {items.map((ing) => {
+                            const isSelected = selectedKeys.has(ing.key);
+                            return (
+                              <button
+                                key={ing.key}
+                                className={
+                                  isSelected
+                                    ? "ibfp-ingredientCard ibfp-ingredientCardSelected"
+                                    : "ibfp-ingredientCard"
+                                }
+                                onClick={() => toggleIngredient(ing.key)}
+                                role="listitem"
+                                aria-pressed={isSelected}
+                                type="button"
+                              >
+                                <img
+                                  className="ibfp-ingredientImg"
+                                  src={ingredientImageUrl(ing.displayName)}
+                                  alt={ing.displayName}
+                                  loading="lazy"
+                                  onError={(e) => {
+                                    e.currentTarget.style.visibility = "hidden";
+                                  }}
+                                />
+                                <div className="ibfp-ingredientName">
+                                  {ing.displayName}
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                    </section>
+                  );
+                })}
+              </div>
             </div>
           </aside>
 

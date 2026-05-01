@@ -1,5 +1,5 @@
 .component-container{
-    height: calc(100% - var(--app-nav-height));
+    height: 100%;
     margin: 0 8%;
     overflow: hidden;
 }
@@ -17,9 +17,9 @@ width: 15%;}
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;
   padding: 20px;
-  overflow: visible;
-  height: auto;
-  flex: none;
+  box-sizing: border-box;
+  justify-content: center;
+
 }
 
 /* Ingredient-Based Food Picker layout */
@@ -116,6 +116,7 @@ width: 15%;}
   justify-content: space-between;
   gap: 12px;
   color: #f4f4f4;
+  flex-shrink: 0;
 }
 
 .ibfp-panelTitle {
@@ -139,11 +140,22 @@ width: 15%;}
   color: rgba(255, 255, 255, 0.55);
 }
 
+.ibfp-panelBody {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 12px;
+}
+
 .ibfp-selectedBar {
   padding: 0 16px 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .ibfp-ingredientList {
@@ -241,6 +253,12 @@ width: 15%;}
 .ibfp-ingredientCardSelected {
   border-color: rgba(98, 220, 180, 0.65);
   background: rgba(98, 220, 180, 0.10);
+}
+
+.ibfp-ingredientCardSelected:hover,
+.ibfp-ingredientCardSelected:focus-visible {
+  border-color: rgba(98, 220, 180, 0.65);
+  background: rgba(98, 220, 180, 0.14);
 }
 
 .ibfp-ingredientImg {
@@ -480,12 +498,13 @@ width: 15%;}
   .ibfp-panel {
     position: fixed;
     top: calc(var(--app-nav-height) + 8px);
-    bottom: calc(var(--app-footer-height) + 8px);
+    bottom: calc(var(--app-footer-height) + env(safe-area-inset-bottom, 0px) + 8px);
     left: 8px;
     width: min(420px, calc(100vw - 16px));
     z-index: 1200;
     transform: translateX(-108%);
     transition: transform 180ms ease;
+    overflow: hidden;
   }
   .ibfp-panelMobileOpen {
     transform: translateX(0);
